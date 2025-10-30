@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanta Majumder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <header class="hero" id="home">
+        <nav class="nav">
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="education.html">Education</a>
+                <a href="projects.html">Projects</a>
+                <a href="certifications.html">Certifications</a>
+                <a href="activities.html">Activities</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+        <div class="hero-inner">
+            <div class="hero-content hero-copy">
+                <h1 class="hero-title hero-title--accent">SHANTA MAJUMDER</h1>
+                <p>I am an AI and Machine Learning enthusiast with expertise in ML/DL techniques. Currently pursuing NLP
+                    research using RAG, intelligent agents, and LLMs, and a strong interest in quantum computing.</p>
+                <div class="hero-meta">
+                    <span class="meta-item"><strong>Phone:</strong> +8801715133376</span>
+                    <a class="meta-item" href="mailto:shantamajumder1875@gmail.com"><strong>Email:</strong>
+                        shantamajumder1875@gmail.com</a>
+                    <span class="meta-item"><strong>Location:</strong> Dhaka, Bangladesh</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="projects.html" class="btn primary">Explore Projects</a>
+                    <a href="#contact" class="btn secondary">Get in Touch</a>
+                </div>
+                <div class="hero-social hero-social-inline">
+                    <a href="https://www.linkedin.com/in/shanta-majumder-564894333/" target="_blank"
+                        rel="noreferrer">LinkedIn</a>
+                    <a href="https://github.com/shanta0338" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+            </div>
+            <div class="hero-portrait" aria-labelledby="hero-name">
+                <div class="hero-portrait-circle">
+                    <img src="assets/img/IMG_0300.JPG" alt="Portrait of Shanta Majumder">
+                </div>
+                <div class="hero-portrait-meta">
+                    <h2 id="hero-name" class="brand-text">AI &amp; ML Researcher · Data Science Major</h2>
+                    <p>Dhaka, Bangladesh</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-background" role="presentation"></div>
+    </header>
+
+    <main>
+        <section class="intro" id="education">
+            <div class="intro-item">
+                <span class="trait-chip">Programming Languages</span>
+                <p>Python, C/C++, and Java (basic) applied across coursework, research prototypes, and competitive labs.</p>
+            </div>
+            <div class="intro-item">
+                <span class="trait-chip">Machine Learning Frameworks</span>
+                <p>Hands-on with Scikit-Learn, TensorFlow, PyTorch, spaCy, LangChain (basic), and langGraph (basic) for
+                    production-ready experimentation.</p>
+            </div>
+            <div class="intro-item">
+                <span class="trait-chip">Data &amp; Cloud Platforms</span>
+                <p>MySQL for structured storage, Power BI for storytelling, and deployments across Google Cloud Platform
+                    and AWS.</p>
+            </div>
+            <div class="intro-item">
+                <span class="trait-chip">DevOps &amp; Tooling</span>
+                <p>Version control with Git/GitHub, containerization via Docker, orchestration with Kubernetes, and daily
+                    workflows in Linux and LaTeX.</p>
+            </div>
+        </section>
+
+        <section class="profile-highlights" aria-labelledby="profile-highlights-title">
+            <div class="profile-card-grid">
+                <article class="profile-card">
+                    <span class="profile-card__label" id="profile-highlights-title">Research Interests</span>
+                    <p>Natural Language Processing, Quantum Computing, Applied ML/DL, and Agentic AI systems.</p>
+                </article>
+                <article class="profile-card">
+                    <span class="profile-card__label">Languages</span>
+                    <p>Bangla (Native) and English (Intermediate) with multicultural collaboration experience.</p>
+                </article>
+                <article class="profile-card">
+                    <span class="profile-card__label">Hobbies</span>
+                    <p>Reading books, cooking, and gaming to stay curious and balanced beyond research.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="section-header">
+                <h2>Get in touch</h2>
+                <p>Share a few details about your project or collaboration idea and I will respond within a business day.</p>
+            </div>
+            <form class="contact-form" action="https://formsubmit.co/shantamajumder1875@gmail.com" method="post">
+                <input type="hidden" name="_subject" value="New inquiry from shantamajumder.dev">
+                <input type="hidden" name="_captcha" value="false">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contact-name">Name</label>
+                        <input type="text" id="contact-name" name="Name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" name="Email" required placeholder="you@example.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contact-phone">Phone number</label>
+                        <input type="tel" id="contact-phone" name="Phone" placeholder="+8801XXXXXXXXX">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Project or message details</label>
+                    <textarea id="contact-message" name="Message" rows="5" required placeholder="Tell me about the problem you're solving or the collaboration you have in mind."></textarea>
+                </div>
+                <div class="contact-actions">
+                    <button type="submit" class="btn primary">Send message</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="site-footer">
+        <div class="footer-meta">
+            <span>© 2025 Shanta Majumder. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="#home">Back to top</a>
+                <a href="https://www.linkedin.com/in/shanta-majumder-564894333/" target="_blank"
+                    rel="noreferrer">LinkedIn</a>
+                <a href="https://github.com/shanta0338" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
