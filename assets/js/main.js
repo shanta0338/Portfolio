@@ -1,59 +1,33 @@
-const nav = document.querySelector('.nav');
-const navToggle = document.querySelector('.nav-toggle');
-const parallaxItems = document.querySelectorAll('[data-parallax]');
+// refine.js — scroll reveal + active nav link. Works alongside main.js.
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (nav && navToggle) {
-    const navLinks = nav.querySelectorAll('.nav-links a');
-    const body = document.body;
+  // Highlight current page in the nav
+  var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    var target = (a.getAttribute('href') || '').split('#')[0].toLowerCase();
+    if (target === page || (page === '' && target === 'index.html')) {
+      a.setAttribute('aria-current', 'page');
+      a.style.opacity = '1';
+      a.style.fontWeight = '700';
+    }
+  });
 
-    const setNavState = (isOpen) => {
-        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-        body.classList.toggle('nav-open', isOpen);
-    };
-
-    navToggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        navToggle.classList.toggle('active');
-        setNavState(isOpen);
+  // Scroll reveal for cards
+  if (reduce || !('IntersectionObserver' in window)) return;
+  var items = document.querySelectorAll('.cert-card, .approach-card, .profile-card, .intro-item, .case');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('rf-in');
+        io.unobserve(e.target);
+      }
     });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('open');
-            navToggle.classList.remove('active');
-            setNavState(false);
-        });
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!nav.contains(event.target) && nav.classList.contains('open')) {
-            nav.classList.remove('open');
-            navToggle.classList.remove('active');
-            setNavState(false);
-        }
-    });
-
-    document.addEventListener('keyup', (event) => {
-        if (event.key === 'Escape' && nav.classList.contains('open')) {
-            nav.classList.remove('open');
-            navToggle.classList.remove('active');
-            setNavState(false);
-            navToggle.focus();
-        }
-    });
-}
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-        } else {
-            entry.target.classList.remove('in-view');
-        }
-    });
-}, {
-    threshold: 0.18,
-});
-
-parallaxItems.forEach(item => observer.observe(item));
+  items.forEach(function (el, i) {
+    el.classList.add('rf-reveal');
+    el.style.transitionDelay = Math.min((i % 4) * 60, 180) + 'ms';
+    io.observe(el);
+  });
+})();
