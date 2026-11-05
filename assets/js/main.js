@@ -7,12 +7,11 @@
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // 1. Highlight current page in the nav (handles GitHub Pages & clean URLs)
+    // 1. Highlight current page in the nav
     var rawPath = location.pathname.replace(/\/+$/, '');
     var lastSegment = rawPath.split('/').pop() || 'index.html';
     var currentPage = lastSegment.toLowerCase().replace(/\.html$/, '');
 
-    // If URL ends at repo root (e.g., /Portfolio), treat as index
     if (currentPage === 'portfolio' || currentPage === '') {
       currentPage = 'index';
     }
@@ -37,7 +36,6 @@
     // 2. Scroll reveal for cards
     if (reduce || !('IntersectionObserver' in window)) return;
 
-    // Ensure reveal CSS exists so cards animate smoothly without breaking hover/parallax
     if (!document.getElementById('rf-reveal-styles')) {
       var style = document.createElement('style');
       style.id = 'rf-reveal-styles';
@@ -55,13 +53,13 @@
       document.head.appendChild(style);
     }
 
-    var selector = '.cert-card, .approach-card, .profile-card, .intro-item, .case';
-    var items = document.querySelectorAll(selector);
+    var items = document.querySelectorAll(
+      '.cert-card, .approach-card, .profile-card, .intro-item, .case'
+    );
     if (!items.length) return;
 
     var io = new IntersectionObserver(
       function (entries) {
-        // Filter only intersecting entries in this frame so stagger is per-batch
         var visibleBatch = entries.filter(function (e) {
           return e.isIntersecting;
         });
@@ -74,17 +72,13 @@
           el.classList.add('rf-in');
           io.unobserve(el);
 
-          // Remove inline transitionDelay after reveal finishes so :hover is instant
           window.setTimeout(function () {
             el.style.removeProperty('transition-delay');
             el.style.removeProperty('will-change');
           }, delay + 600);
         });
       },
-      {
-        threshold: 0.06,
-        rootMargin: '0px 0px -24px 0px'
-      }
+      { threshold: 0.06, rootMargin: '0px 0px -24px 0px' }
     );
 
     items.forEach(function (el) {
@@ -93,7 +87,6 @@
     });
   }
 
-  // Run safely whether script is in <head> or at the end of <body>
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
