@@ -90,14 +90,14 @@ code {
 .nav {
     position: sticky;
     top: 1rem;
-    z-index: 1000;
+    z-index: 3000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 1180px;
     margin: 0 auto 2.5rem;
     padding: 0.8rem 1.4rem;
-    background: rgba(11, 17, 32, 0.82);
+    background: rgba(11, 17, 32, 0.85);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid var(--border-subtle);
@@ -107,7 +107,7 @@ code {
 }
 
 .nav.is-scrolled {
-    background: rgba(6, 9, 19, 0.92);
+    background: rgba(6, 9, 19, 0.95);
     border-color: rgba(56, 189, 248, 0.28);
 }
 
@@ -117,6 +117,7 @@ code {
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: 0.01em;
+    z-index: 3002;
 }
 
 .nav-links {
@@ -158,6 +159,7 @@ code {
     border: 1px solid var(--border-subtle);
     border-radius: 50%;
     cursor: pointer;
+    z-index: 3002;
     transition: all var(--transition-smooth);
 }
 
@@ -165,20 +167,27 @@ code {
     display: block;
     width: 20px;
     height: 2px;
+    margin: 0;
     background: var(--text-primary);
     border-radius: 2px;
     transition: transform 0.28s ease, opacity 0.2s ease;
 }
 
-.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+.nav-toggle[aria-expanded="true"] span:nth-child(1),
+.nav.is-open .nav-toggle span:nth-child(1),
+.nav.nav--open .nav-toggle span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
 
-.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+.nav-toggle[aria-expanded="true"] span:nth-child(2),
+.nav.is-open .nav-toggle span:nth-child(2),
+.nav.nav--open .nav-toggle span:nth-child(2) {
     opacity: 0;
 }
 
-.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+.nav-toggle[aria-expanded="true"] span:nth-child(3),
+.nav.is-open .nav-toggle span:nth-child(3),
+.nav.nav--open .nav-toggle span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 }
 
@@ -323,6 +332,7 @@ code {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
     position: relative;
+    z-index: 1;
     overflow: hidden;
 }
 
@@ -411,7 +421,6 @@ main {
     box-shadow: var(--shadow-card);
 }
 
-/* Interactive cursor spotlight effect */
 .intro-item::before,
 .profile-card::before,
 .cert-card::before,
@@ -785,10 +794,11 @@ main {
         margin: 0 0.75rem 1.75rem;
         padding: 0.7rem 1.1rem;
         border-radius: var(--radius-md);
+        overflow: visible !important;
     }
 
     .nav-toggle {
-        display: inline-flex;
+        display: inline-flex !important;
     }
 
     .nav-links {
@@ -799,23 +809,34 @@ main {
         right: 0;
         flex-direction: column;
         align-items: stretch;
-        background: rgba(11, 17, 32, 0.97);
+        background: rgba(11, 17, 32, 0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         padding: 0.85rem;
         border-radius: var(--radius-md);
         border: 1px solid var(--border-highlight);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.85);
         gap: 0.35rem;
+        z-index: 3005;
     }
 
+    /* Matches every possible toggle class or aria-expanded state */
     .nav-links.is-open,
-    .nav-links.active {
-        display: flex;
+    .nav-links.active,
+    .nav-links.open,
+    .nav-links.show,
+    .nav.is-open .nav-links,
+    .nav.nav-open .nav-links,
+    .nav.nav--open .nav-links,
+    .nav.open .nav-links,
+    body.nav-open .nav-links,
+    body.menu-open .nav-links,
+    .nav:has(.nav-toggle[aria-expanded="true"]) .nav-links {
+        display: flex !important;
     }
 
     .nav-links a {
-        padding: 0.8rem 1rem;
+        padding: 0.85rem 1rem;
         font-size: 1rem;
         border-radius: var(--radius-sm);
         text-align: left;
